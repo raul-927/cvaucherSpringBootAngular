@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="uy.com.cvaucher.services.mybatis.mappers.TratamientoMapper">
+
+  	<resultMap type="uy.com.cvaucher.services.domain.Tratamiento" id="TratResult">
+  		<id property="tratId" column="trat_id"/>
+		<result property="tratDescripcion" column="trat_descripcion"/>
+		<result property ="tratCantSesiones" column ="trat_cant_sesiones"/>
+		<association  property ="tipoTratamiento" resultMap ="uy.com.cvaucher.services.mybatis.mappers.TipoTratamientoMapper.TipoTratResult"/>
+		<association property="impuesto" resultMap ="uy.com.cvaucher.services.mybatis.mappers.ImpuestoMapper.ImpuestoResult"/>
+  	</resultMap>
+  	
+  	<resultMap type="uy.com.cvaucher.services.domain.Tratamiento" id="SesionResult">
+  		<result property ="tratCantSesiones"	column ="trat_cant_sesiones"/>
+  	</resultMap>
+  	
+  	<resultMap type="uy.com.cvaucher.services.domain.TratByList" id="TratByListResult">
+  		<result property = "id"			column ="ID"/>
+  		<result property ="descripcion"	column ="DESCRIPCION"/>	
+  		<result property ="sesiones"	column ="CANT_SESIONES"/>
+  		<result property ="monto"		column ="MONTO"/>
+  	</resultMap>
+ 
+</mapper>

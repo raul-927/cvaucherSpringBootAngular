@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="uy.com.cvaucher.services.mybatis.mappers.AsientoContableMapper">
+		  	
+  	<resultMap type="uy.com.cvaucher.services.domain.AsientoContable" id="AsientoContableResult">
+  		<id	property = "asContId" 	column = "CON_ID"/>
+		
+  		<result property ="caja.cajaId"				 column  	="CAJA_ID"/>
+		<result property ="asConNro"				 column  	="NRO"/>
+		<result property ="asCuentaDebe.cuentaDesc"  column		="DEBE"/>
+		<result property ="asCuentaDebeMonto"		 column 	="DEBE_MONTO"/>
+		<result property ="asCuentaHaber.cuentaDesc" column 	="HABER"/>
+		<result property ="asCuentaHaberMonto"		 column 	="HABER_MONTO"/>
+		<result property ="asCuentaTipo"			 column 	="TIPO"/>
+		<result property ="asConDescripcion" 		 column 	="DESCRIPCION"/>
+  		<result property ="asConFecha" 				 column 	="FECHA"/>
+  		<result property ="asConHora" 				 column 	="HORA"/>
+  		<result property ="asConUsr" 				 column 	="USR"/>
+  	</resultMap>
+  	
+  	<resultMap type="uy.com.cvaucher.services.domain.ResultadoCuentaAsientoTotal" id="CuentaAsientoResult">
+  		<result property ="descCuenta" column ="Cuenta"/>
+  		<result property ="total" column ="Total"/>
+  		<result property ="tipo"  column = "Tipo"/>
+  	</resultMap>
+  	
+  	<resultMap type ="uy.com.cvaucher.services.clases.MaxNumAsientoContable" id ="MaxNumAsientoContableResult">
+  		<result property ="maxNum" column ="max_num"/>
+
+  	</resultMap>
+  	
+  	<resultMap type="uy.com.cvaucher.services.clases.ResumenPorCuentas" id="ResumenPorCuentasResult">
+  		<result property = "cuenta" column ="cuenta"/>
+  		<result property = "total" column ="total"/>
+  	</resultMap>
+</mapper>

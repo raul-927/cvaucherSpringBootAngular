@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="uy.com.cvaucher.services.mybatis.mappers.PagoTarjetaMapper">
+		  	
+  	<resultMap type="uy.com.cvaucher.services.domain.PagoTarjeta" id="PagoTarjetaResult">
+  	    
+  		<id property="tarjId" 				   column="tarj_id"/>
+  		
+		<result property = "tarjPacCedula" 	   column="tarj_pac_cedula"/>
+		<result property = "tarjetaCajaId" 	   column="tarjeta_caja_id"/>
+		<result property = "asientoNro" 	   column="tarjeta_asiento_nro"/>
+		<result property = "tarjPagoId" 	   column ="tarj_pago_id"/>
+		<result property = "tarjNro" 		   column ="tarj_nro"/>
+		<result property = "tarjDesc" 		   column ="tarj_desc"/>
+		<result property = "tarjVence" 		   column ="tarj_vence"/>
+		<result property = "tarjImporte" 	   column ="tarj_importe"/>
+		<result property = "tarjCuenta"		   column ="tarj_cuenta"/>
+		<result property = "cantCuotas" 	   column ="tarj_cuotas"/>
+		<result property = "tarjPagoUsuario"   column ="tarj_pago_usuario"/>
+  	</resultMap>
+  	
+  
+</mapper>

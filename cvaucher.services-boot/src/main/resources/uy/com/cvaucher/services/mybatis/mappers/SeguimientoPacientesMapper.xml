@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="uy.com.cvaucher.services.mybatis.mappers.SeguimientoPacientesMapper">
+		  	
+  	<resultMap type="uy.com.cvaucher.services.domain.SeguimientoPacientes" id="SeguimientoPacientesResult">
+  	
+  		<id 	property = "segPacId"			column = "seg_pac_id"/>
+  		
+  		<result property = "tratPacId"			column = "trat_pac_id"/>
+		<result property = "fechControl" 		column = "fecha_control"/>
+  		<result property = "observaciones" 		column = "observaciones"/>
+  		<result property = "brazoI" 			column = "brazo_izquierdo"/>
+  		<result property = "brazoD" 			column = "brazo_derecho"/>
+  		<result property = "muzloI" 			column = "muzlo_izquierdo"/>
+  		<result property = "muzloD" 			column = "muzlo_derecho"/>
+  		<result property = "abdomen" 			column = "abdomen"/>
+  		<result property = "cintura" 			column = "cintura"/>
+  		<result property = "cadera" 			column = "cadera"/>
+  		<result property = "peso" 				column = "peso"/>
+  		<result property = "imc" 				column = "imc"/>
+  	</resultMap>
+  	
+  
+</mapper>

@@ -1,0 +1,195 @@
+<beans xmlns ="http://www.springframework.org/schema/beans"
+	xmlns:xsi ="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop ="http://www.springframework.org/schema/aop"
+	xmlns:context = "http://www.springframework.org/schema/context"
+	xmlns:jee ="http://www.springframework.org/schema/jee"
+	xmlns:tx ="http://www.springframework.org/schema/tx"
+	xmlns:p = "http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/jee 
+	http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+	http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
+    http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+    
+<!--     <context:annotation-config /> -->
+<!--     <context:component-scan base-package="uy.com.cvaucher.mvc.config"/> -->
+    
+    
+<!--     <bean class="uy.com.cvaucher.mvc.config.ConfigCvaucherMVC" /> -->
+	<!-- <context:property-placeholder
+		location = "file:///G:/SERVERS/apache-tomcat-7.0.26_1/conf/security.properties"/> -->
+	
+<!-- 	<context:property-placeholder location="/WEB-INF/cvaucher.properties" /> -->
+<!-- 	<mvc:annotation-driven/>  -->
+<!-- 	<mvc:resources mapping="/resources/**" location="/resources/" /> -->
+
+<!-- 	<bean id ="dataSource" -->
+<!-- 		class ="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+		
+<!-- 		<property name ="driverClassName" -->
+<!-- 			value ="${jdbc.driverClassName}"/> -->
+			
+<!-- 		<property name ="url" -->
+<!-- 			value ="${jdbc.url}"/> -->
+			
+<!-- 		<property name ="username" -->
+<!-- 			value ="${jdbc.username}"/> -->
+			
+<!-- 		<property name ="password" -->
+<!-- 			value = "${jdbc.password}"/>	 -->
+<!-- 	</bean> -->
+
+	<!--	
+	<context:property-placeholder
+		location = "file:/media/raul927/01CC35ED04318FE0/SERVERS_LINUX/apache-tomcat-7.0.26_1/conf/security.properties"/>	
+	-->
+	
+<!-- 	<bean id = "agendaService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.agenda" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.AgendaService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	 	
+<!-- 	<bean id = "tipoTratamientoService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.tipotratamiento" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.TipoTratamientoService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	   
+<!-- 	   <bean id ="httpInvokerRequestExecutor" -->
+<!-- 	   	class ="org.springframework.security.remoting.httpinvoker.AuthenticationSimpleHttpInvokerRequestExecutor"/> -->
+	 
+<!-- 	<bean id = "tratamientoService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.tratamiento" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.TratamientoService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id = "pacientesService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.pacientes" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.PacientesService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id = "direccionService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.direccion" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.DireccionService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id = "sesionesService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.sesiones" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.SesionesService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id = "seguimientoPacientesService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.seguimientopacientes" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.SeguimientoPacientesService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id = "historiaClinicaService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.historiaclinica" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.HistoriaClinicaService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="tratamientoPacienteService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 	    p:serviceUrl ="${services.url}/cvaucher.tratamientoPaciente" -->
+<!-- 	    p:serviceInterface ="uy.com.cvaucher.services.services.TratamientoPacienteService" -->
+<!-- 	    p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="historialPagosServices" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.historialPagos" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.HistorialPagosService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+		
+<!-- 	<bean id ="listaPreciosService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.listaPrecios" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.ListaPreciosService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+		
+<!-- 	<bean id ="auxPreciosService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.auxPrecios" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.AuxPreciosService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+		
+<!-- 	<bean id ="formasDePagosService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.formasDePagos" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.FormasDePagosService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="cuentasService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.cuentas" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.CuentasService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="grupoCuentasService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.grupoCuentas" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.GrupoCuentasService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="pagoTarjetaService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.pagoTarjeta" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.PagoTarjetaService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+		
+<!-- 	<bean id ="pagoEfectivoService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.pagoEfectivo" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.PagoEfectivoService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+		
+<!-- 	<bean id ="domainUserService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.domainUser" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.DomainUserService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+		
+<!-- 	<bean id ="loginService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.login" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.LoginService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="rolesService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.roles" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.RolesService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="cajaService" -->
+<!-- 		class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.caja" -->
+<!-- 		p:serviceInterface ="uy.com.cvaucher.services.services.CajaService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="asientoContableService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.asientoContable" -->
+<!-- 		p:serviceInterface = "uy.com.cvaucher.services.services.AsientoContableService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+	
+<!-- 	<bean id ="impuestoService" -->
+<!-- 	    class ="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" -->
+<!-- 		p:serviceUrl ="${services.url}/cvaucher.impuesto" -->
+<!-- 		p:serviceInterface = "uy.com.cvaucher.services.services.ImpuestoService" -->
+<!-- 		p:httpInvokerRequestExecutor-ref="httpInvokerRequestExecutor"/> -->
+</beans>

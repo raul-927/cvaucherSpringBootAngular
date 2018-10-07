@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="uy.com.cvaucher.services.mybatis.mappers.TratamientoPacienteMapper">
+		  	
+  	<resultMap type="uy.com.cvaucher.services.domain.TratamientoPaciente" id="TratamientoPacienteResult">
+  		<id property="tratPacId" 				column="trat_pac_id"/>
+		<result property = "fecha" 				column ="fecha"/>  
+  		<result property = "costoTratSesion" 	column ="costo_tratamiento"/>
+  		<result property = "importePagado" 		column ="importe_pagado"/>
+  		<result property = "saldoPendiente" 	column ="saldo_pendiente"/>  
+  		<result property = "tratamId"			column ="trat_id"/>
+  
+  		<association  property = "pacientes" resultMap ="uy.com.cvaucher.services.mybatis.mappers.PacientesMapper.PacientesResult"/>
+  		
+  	</resultMap>
+  	
+  	<resultMap type ="uy.com.cvaucher.services.domain.TratPacByCedula" id ="TratamientoPacienteByCedulaResult">
+ 
+ 		<result property ="tratPacId"			column ="Id"/>
+ 		<result property ="cedula"				column ="Cedula"/>
+  		<result property ="fecha"				column ="Fecha"/>
+  		<result property ="tratDesc"			column ="Tratamiento" />
+  		<result property ="costoTratamiento"	column ="Monto"/>
+  		<result property ="importePagado"		column ="Pagado"/>
+  		<result property ="saldoPendiente"		column ="Saldo"/>
+  		<result property ="cantSesiones"		column ="Sesiones"/>
+  	</resultMap>
+	
+	<resultMap type="uy.com.cvaucher.services.domain.MaxTratPacId" id="MaxTratPacIdResutl">
+		<result property = "maxId" 	column ="MAX_ID"/>
+	</resultMap>
+	
+</mapper>

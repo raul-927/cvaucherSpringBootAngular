@@ -1,0 +1,70 @@
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+      "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+<tiles-definitions>
+	<definition name="layoutListaCopia" 
+             template="/WEB-INF/views/lista_precios/copia/listaCopiaTemplate.jsp">
+             
+       <put-attribute name="header"
+       		value ="/WEB-INF/views/layout/layoutHead.jsp"/>
+       
+       <put-attribute name="menu"
+           value = "/WEB-INF/views/layout/layoutMenu.jsp"/>
+       
+       <put-attribute name="left"
+           value = ""/>
+       
+       <put-attribute name="content"
+           value = ""/>
+       
+       <put-attribute name="right"
+           
+           value = ""/>
+       
+       <put-attribute name="footer"
+           value = "/WEB-INF/views/layout/layoutFooter.jsp"/>
+              
+   </definition>
+	
+	
+	<definition name ="listas/InicioInsertlistas" extends ="layout">
+		<put-attribute name="left" 
+			value= "/WEB-INF/views/lista_precios/principal/listaOpcionsForm.jsp"/>
+	</definition>
+	
+	<definition name ="listas/nuevaLista" extends  ="layout">
+	
+	<put-attribute name="left" 
+			value= "/WEB-INF/views/lista_precios/nueva/tableInsertNuevaLista.jsp"/>
+	</definition>
+	
+	<definition name ="listas/insertar" extends  ="layout">
+	
+	<put-attribute name="left" 
+			value= "/WEB-INF/views/lista_precios/insertar_trat_lista/tableInsertNuevaTratEnLista.jsp"/>
+	</definition>
+	
+	<definition name ="listas/ingresarFechaNuevaLista" extends ="layout">
+		<put-attribute name ="left" 
+				value= "/WEB-INF/views/lista_precios/nueva/listaFechaIniFinForm.jsp"/>
+	
+	</definition>
+	
+	
+	<definition name ="listas/copia" extends  ="layout">
+	
+	<put-attribute name="left" 
+			value= "/WEB-INF/views/lista_precios/copia/tableCopiarModificarLista.jsp"/>
+	</definition>
+	
+	<definition name ="listas/copiarModificar" extends ="layoutListaCopia">
+		<put-attribute name ="left"
+				value= "/WEB-INF/views/lista_precios/copia/tableCopiarNuevaLista.jsp"/>
+				
+		<put-attribute name ="right"
+				value ="/WEB-INF/views/lista_precios/copia/formCopiarModificarLista.jsp"/>
+	
+	</definition>
+	
+</tiles-definitions>
