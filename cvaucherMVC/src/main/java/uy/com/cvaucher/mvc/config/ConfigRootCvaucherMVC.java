@@ -45,7 +45,6 @@ public class ConfigRootCvaucherMVC implements WebMvcConfigurer {
 	@Value("${jdbc.url}")
 	private String url;
 	
-	
 	@Value("${jdbc.username}")
 	private String username;
 	
