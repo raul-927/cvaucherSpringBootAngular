@@ -18,7 +18,7 @@ import uy.com.cvaucher.services.services.TipoTratamientoService;
 import uy.com.cvaucher.services.enumerador.TipoImpuesto;
 
 @Controller
-@RequestMapping("/tratamientos")
+@RequestMapping("/tratamiento")
 public class TratamientoController 
 {
 	private ImpuestoService		   impuestoService;

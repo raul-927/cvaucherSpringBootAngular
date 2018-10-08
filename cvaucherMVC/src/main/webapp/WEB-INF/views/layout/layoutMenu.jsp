@@ -92,9 +92,9 @@
                <li class="dropdown-submenu">
                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tratamientos</a>
                 	<ul class="dropdown-menu">
-                    	<li><a href='<s:url value="/tratamientos?insert"/>'>Crear un nuevo Tratamiento</a></li>
-		                <li><a href='<s:url value="/tratamientos?update"/>'>Modificar un Tratamiento</a></li>
-		                <li><a href='<s:url value="/tratamientos?delete"/>'>Eliminar un Tratamiento</a></li>
+                    	<li><a href='<s:url value="/tratamiento?insert"/>'>Crear un nuevo Tratamiento</a></li>
+		                <li><a href='<s:url value="/tratamiento?update"/>'>Modificar un Tratamiento</a></li>
+		                <li><a href='<s:url value="/tratamiento?delete"/>'>Eliminar un Tratamiento</a></li>
 		                <li class="divider"></li>
 		           	</ul>
               </li>
