@@ -11,28 +11,11 @@
 	<c:forEach var = "aux" items ="${tratP}">
 			
 			<c:if test ="${aux.id == tratPacById.id}">
-				<c:set var ="aux2" value ="#{tratPacById.sesiones}"/>
-				
+				<c:set var ="aux2" value ="#{tratPacById.tratCantSesiones}"/>
 			</c:if>
 	</c:forEach>
-	
-	<sf:input cssClass ="form-control" path="cantSesiones" value ="${aux2}" size ="30" />
+	<sf:input cssClass ="form-control" path="cantSesiones"   value ="${aux2}" size ="30" />
 	<sf:errors path ="cantSesiones" cssClass ="error"/>
 </div>
-
-<div class="form-group">
-	<sf:label path="costoTratSesion" for ="costoTratSesion">Importe</sf:label>
-	<c:forEach var = "aux" items ="${tratP}">
-			
-			<c:if test ="${aux.id == tratPacById.id}">
-				<c:set var = "aux3" value ="#{tratPacById.monto}"/>
-			</c:if>
-	</c:forEach>
-	<sf:input cssClass ="form-control" path="costoTratSesion" value ="${aux3}" size ="30" />
-	<sf:errors path ="costoTratSesion" cssClass ="error"/>
-</div>
 	
-	
-			 	
-			 	
 

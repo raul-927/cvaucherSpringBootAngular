@@ -30,21 +30,23 @@ public class SqlAsientoContableProvider {
 	}
 	
 	public String ingresarAsientoContable(final AsientoContable asientoContable){
-		return new SQL(){{
+		 
+		String sql = new SQL(){{
 			INSERT_INTO("asiento_contable");
-			VALUES("as_con_caja_id","#{caja.cajaId}");
-			VALUES("as_con_nro","#{asConNro}");
-			VALUES("as_cuenta_debe","#{asCuentaDebe.cuentaId}");
-			VALUES("as_cuenta_debeMonto","#{asCuentaDebeMonto}");
-			VALUES("as_cuenta_haber","#{asCuentaHaber.cuentaId}");
-			VALUES("as_cuenta_haberMonto","#{asCuentaHaberMonto}");
-			VALUES("as_cuenta_tipo","#{asCuentaTipo}");
-			VALUES("as_con_descripcion","#{asConDescripcion}");
-			VALUES("as_con_fecha","#{asConFecha}");
-			VALUES("as_con_hora","#{asConHora}");
-			VALUES("as_con_usr","#{asConUsr}");
+			VALUES("as_con_caja_id",		String.valueOf(asientoContable.getCaja().getCajaId()));
+			VALUES("as_con_nro",			String.valueOf(asientoContable.getAsConNro()));
+			VALUES("as_cuenta_debe",		String.valueOf(asientoContable.getAsCuentaDebe().getCuentaId()));
+			VALUES("as_cuenta_debeMonto",	String.valueOf(asientoContable.getAsCuentaDebeMonto()));
+			VALUES("as_cuenta_haber",		String.valueOf(asientoContable.getAsCuentaHaber().getCuentaId()));
+			VALUES("as_cuenta_haberMonto",	String.valueOf(asientoContable.getAsCuentaHaberMonto()));
+			VALUES("as_cuenta_tipo",		"'".concat(String.valueOf(asientoContable.getAsCuentaTipo()).concat("'")));
+			VALUES("as_con_descripcion",	"'".concat(String.valueOf(asientoContable.getAsConDescripcion())).concat("'"));
+			VALUES("as_con_fecha",			String.valueOf(asientoContable.getAsConFecha()));
+			VALUES("as_con_hora",			String.valueOf(asientoContable.getAsConHora()));
+			VALUES("as_con_usr",			String.valueOf(asientoContable.getAsConUsr()));
 			
 		}}.toString();
+		return sql;
 	}
 	
 	public String maxNumAsiento(){

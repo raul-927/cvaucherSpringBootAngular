@@ -1,11 +1,11 @@
 package uy.com.cvaucher.services.mybatis.mappers;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.SelectProvider;
 
@@ -25,7 +25,7 @@ public interface CuentasMapper {
 	
 	@SelectProvider(type = SqlCuentasProvider.class, method ="selectCuentaByCuentaId")
 	@ResultMap("uy.com.cvaucher.services.mybatis.mappers.CuentasMapper.CuentasResult")
-	Cuentas selectCuentaByCuentaId(final int cuentaId);
+	Cuentas selectCuentaByCuentaId(@Param("cuentaId") int cuentaId);
 	
 	@SelectProvider(type = SqlCuentasProvider.class, method ="selectCuentaByFecha")
 	@ResultMap("uy.com.cvaucher.services.mybatis.mappers.CuentasMapper.CuentasResult")

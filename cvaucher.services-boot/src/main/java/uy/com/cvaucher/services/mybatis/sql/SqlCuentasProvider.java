@@ -1,6 +1,8 @@
 package uy.com.cvaucher.services.mybatis.sql;
 
 import java.util.Date;
+import java.util.Map;
+
 import org.apache.ibatis.jdbc.SQL;
 
 import uy.com.cvaucher.services.domain.Cuentas;
@@ -39,7 +41,8 @@ public class SqlCuentasProvider {
 		}}.toString();
 	}
 	
-	public String selectCuentaByCuentaId(final int cuentaId){
+	public String selectCuentaByCuentaId(Map<String, Object>map){
+		int cuentaId = Integer.parseInt(map.get("cuentaId").toString());
 		return new SQL(){{
 			SELECT("cuenta_id, cuenta_desc, cuenta_tipo, cuenta_fecha, cuenta_hora, cuenta_usuario");
 			FROM("cuentas");

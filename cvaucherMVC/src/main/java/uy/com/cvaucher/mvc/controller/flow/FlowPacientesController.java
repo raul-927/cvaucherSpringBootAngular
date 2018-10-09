@@ -221,6 +221,7 @@ public class FlowPacientesController
 		String patron = "YYYY-MM-dd";
 		SimpleDateFormat formato = new SimpleDateFormat(patron);
 		String salida = formato.format(hoy);
+		System.out.println("Fecha: "+salida);
 		return salida;
 	}
 	
