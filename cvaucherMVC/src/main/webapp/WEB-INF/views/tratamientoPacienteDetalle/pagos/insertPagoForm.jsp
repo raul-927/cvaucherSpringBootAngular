@@ -12,7 +12,8 @@
 
 	        <div class="form-group">
 			 	<sf:label path="histPagosFechaPago" for ="histPagosFechaPago">Fecha</sf:label>
-			 	<sf:input cssClass ="input-small " path="histPagosFechaPago"  value ="#{salida}" size ="8" enabled = "false"/>
+			 	<sf:label cssClass ="input-small " path="histPagosFechaPago" size ="8" enabled = "false">${salida}</sf:label>
+			 	<input type="hidden" name="histPagosFechaPago" value ="${salida}"/>
 			 	<sf:errors path ="histPagosFechaPago" cssClass ="error"/>
 		 	</div>
 		 	<div class="form-group">
