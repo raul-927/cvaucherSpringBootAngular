@@ -40,7 +40,12 @@
 		                <li><a href="<s:url value="/caja?resumen"/>">Resumen</a></li>
 	                 </ul>
                 </li>
-             	
+             	<li>
+	                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
+	                 <ul class="dropdown-menu">
+		                 <li><a href='<s:url value="/estadisticas"/>'>Estadisticas</a></li>
+	                 </ul>
+                </li>
              	<security:authorize access="hasRole('ROLE_ADMIN') or (hasRole('ROLE_USER') and authentication.name == 'gaby')">
                 <li><!-- Inicio Menu Configuracion -->
                  
@@ -132,15 +137,9 @@
                     </li>    
               	<li class="divider"></li>
               	 <li><a href='<s:url value="/formasDePagos?insert"/>'>Recursos Humanos</a></li>
-               </security:authorize> 
-               
+               </security:authorize>
            </ul>
-             <li>
-	                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
-	                 <ul class="dropdown-menu">
-		                 <li><a href='<s:url value="/estadisticas"/>'>Estadisticas</a></li>
-	                 </ul>
-                </li>
+             
         </div><!--/.nav-collapse -->
     </div>
 </div>
