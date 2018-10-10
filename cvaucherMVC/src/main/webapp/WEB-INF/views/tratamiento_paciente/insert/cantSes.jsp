@@ -16,7 +16,7 @@
 			</c:if>
 	</c:forEach>
 	
-	<sf:input cssClass ="form-control" path="cantSesiones" value ="${aux2}" size ="30" />
+	<sf:label  path="cantSesiones" value ="${aux2}" size ="30"/>
 	<sf:errors path ="cantSesiones" cssClass ="error"/>
 </div>
 
@@ -28,7 +28,7 @@
 				<c:set var = "aux3" value ="#{tratPacById.monto}"/>
 			</c:if>
 	</c:forEach>
-	<sf:input cssClass ="form-control" path="costoTratSesion" value ="${aux3}" size ="30" />
+	<sf:label  path="costoTratSesion"  size ="30" >${aux3}</sf:label>
 	<sf:errors path ="costoTratSesion" cssClass ="error"/>
 </div>
 	

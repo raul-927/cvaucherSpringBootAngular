@@ -16,7 +16,11 @@
 			</c:if>
 	</c:forEach>
 	
-	<sf:input cssClass ="form-control" path="cantSesiones" value ="${aux2}" size ="30" />
+	<c:if test ="${aux2 == NaN}">
+		<c:set var ="aux2" value ="0"/>	
+	</c:if>
+	
+	<sf:label cssClass ="form-control" path="cantSesiones" value ="${aux2}" size ="30">${aux2}</sf:label>
 	<sf:errors path ="cantSesiones" cssClass ="error"/>
 </div>
 
@@ -28,7 +32,13 @@
 				<c:set var = "aux3" value ="#{tratPacById.monto}"/>
 			</c:if>
 	</c:forEach>
-	<sf:input cssClass ="form-control" path="costoTratSesion" value ="${aux3}" size ="30" />
+	
+	<c:if test ="${aux3 == NaN}">
+				<c:set var = "aux3" value ="0"/>
+			</c:if>
+	<input type="hidden" name="costoTratSesion" value="${aux3}"/>
+	<sf:label cssClass ="form-control" path="costoTratSesion" value ="${aux3}" size ="30">${aux3}</sf:label>
+	
 	<sf:errors path ="costoTratSesion" cssClass ="error"/>
 </div>
 	

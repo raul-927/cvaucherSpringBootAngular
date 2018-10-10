@@ -10,7 +10,11 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/demos/style.css" />
 
-
+<script type="text/javascript">
+	function prueba(){
+		alert("prueba");
+	}
+</script>
 						<h3>Ingresar Tratamiento</h3>
 
 <div class="well well-lg">
@@ -30,7 +34,7 @@
 		 	
 		<div class="form-group">
 			<sf:label path="tratamId" for ="tratamId">Tratamiento</sf:label>
-				<sf:select cssClass ="form-control" path="tratamId" size ="1" >
+				<sf:select cssClass ="form-control" path="tratamId" size ="1" onclick="" type ="submit" name ="_eventId_cantSesionesTratamiento">
 					<sf:options path="tratamId" items="${tratP}" itemLabel="descripcion"  itemValue="id"/>
 				</sf:select>
 			<sf:errors path ="tratamId" cssClass ="error"/>
