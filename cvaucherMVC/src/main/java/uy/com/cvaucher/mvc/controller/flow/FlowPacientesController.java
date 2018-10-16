@@ -30,6 +30,7 @@ import uy.com.cvaucher.services.domain.FormasDePagos;
 import uy.com.cvaucher.services.domain.HistoriaClinica;
 import uy.com.cvaucher.services.domain.MaxTratPacId;
 import uy.com.cvaucher.services.domain.Pacientes;
+import uy.com.cvaucher.services.domain.PagoCredito;
 import uy.com.cvaucher.services.domain.PagoEfectivo;
 import uy.com.cvaucher.services.domain.PagoTarjeta;
 import uy.com.cvaucher.services.domain.TratByList;
@@ -275,7 +276,7 @@ public class FlowPacientesController
 		
 	}
 	
-	public void insertTratamientoPagoCredito(TratamientoPaciente tratamientoPaciente, PagoEfectivo pagoEfectivo,  FormasDePagosDesc formasDePagoDesc)
+	public void insertTratamientoPagoCredito(TratamientoPaciente tratamientoPaciente, PagoCredito pagoCredito,  FormasDePagosDesc formasDePagoDesc)
 	{
 		MaxNumAsientoContable pagoEfAsientoNro = this.asientoContableService.maxNumAsientoContable();
 		int cuentaId = formasDePagoDesc.getFormasDePagoCuenta();
@@ -284,12 +285,13 @@ public class FlowPacientesController
 		
 		Caja cajaActual  = this.cajaService.cargoCajaActual();
 		System.out.println("cajaActual.getCajaId() ==>> "+cajaActual.getCajaId());
-		pagoEfectivo.setPagoEfCajaId(cajaActual.getCajaId());
-		pagoEfectivo.setPagoEfCuenta(pagoEfCuenta);
-		pagoEfectivo.setAsientoNro(pagoEfAsientoNro.getMaxNum());
-		this.insertAsientoContable(pagoEfectivo, tratamientoPaciente, formasDePagoDesc);
-		this.formasDePagosService.insertTratamientoPagoCredito(tratamientoPaciente, pagoEfectivo, formasDePagoDesc.getFormasDePagoCuenta());
+		pagoCredito.setPagoCredCajaId(cajaActual.getCajaId());
+		pagoCredito.setPagoCredCuenta(pagoEfCuenta);
+		pagoCredito.setAsientoNro(pagoEfAsientoNro.getMaxNum());
+		this.insertAsientoContable(pagoCredito, tratamientoPaciente, formasDePagoDesc);
+		this.formasDePagosService.insertTratamientoPagoCredito(tratamientoPaciente, pagoCredito, formasDePagoDesc.getFormasDePagoCuenta());
 	}
+	
 	public FormasDePagosDesc getFormasDePagosDesc(){
 		return this.formasDePagosDesc;
 	}

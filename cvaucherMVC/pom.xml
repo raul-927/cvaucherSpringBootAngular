@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>uy.com.cvaucher</groupId>
-	<artifactId>cvaucherMVC</artifactId>
+	<artifactId>cvaucherMVC-boot</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 

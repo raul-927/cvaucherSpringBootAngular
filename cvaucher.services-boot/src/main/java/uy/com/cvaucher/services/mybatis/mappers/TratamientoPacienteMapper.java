@@ -3,8 +3,9 @@ package uy.com.cvaucher.services.mybatis.mappers;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -13,9 +14,9 @@ import uy.com.cvaucher.services.clases.SearchMaxTratPacId;
 import uy.com.cvaucher.services.domain.MaxTratPacId;
 import uy.com.cvaucher.services.domain.TratPacByCedula;
 import uy.com.cvaucher.services.domain.TratamientoPaciente;
+import uy.com.cvaucher.services.mybatis.sql.SqlTratamientoPacienteProvider;
 
-public interface TratamientoPacienteMapper 
-{
+public interface TratamientoPacienteMapper {
 	
 	
 	@Select("SELECT tp.trat_pac_id Id, tp.pac_cedula Cedula, tp.fecha Fecha, "
@@ -42,12 +43,9 @@ public interface TratamientoPacienteMapper
 	@ResultMap("uy.com.cvaucher.services.mybatis.mappers.TratamientoPacienteMapper.TratamientoPacienteResult")
 	List<TratamientoPaciente> findAllTratamientoPaciente();
 	
-	@Insert("INSERT INTO tratamiento_paciente (fecha, pac_cedula, trat_id, "
-			+ "costo_tratamiento, importe_pagado, saldo_pendiente, cant_sesiones) "
-			+ "VALUES (#{fecha}, #{pacientes.cedula}, #{tratamId}, "
-			+ "#{costoTratSesion}, #{importePagado}, #{costoTratSesion}, #{cantSesiones})")
+	@InsertProvider(type =SqlTratamientoPacienteProvider.class, method ="insertTratamientoPaciente")
 	@Options(useGeneratedKeys=true, keyProperty="tratPacId")
-	void insertTratamientoPacienteMapper(TratamientoPaciente tratamientoPaciente);
+	void insertTratamientoPacienteMapper(@Param("tratamientoPaciente") TratamientoPaciente tratamientoPaciente);
 	
 	@Delete("DELETE FROM tratamiento_paciente WHERE trat_pac_id = #{tratPacId}")
 	void deleteTratamientoPacienteMapper(int tratPacId);

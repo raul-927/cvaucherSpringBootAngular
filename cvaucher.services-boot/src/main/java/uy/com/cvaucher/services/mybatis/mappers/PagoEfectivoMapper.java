@@ -14,8 +14,8 @@ import uy.com.cvaucher.services.mybatis.sql.SqlPagoEfectivoProvider;
 public interface PagoEfectivoMapper 
 {
 	@InsertProvider(type = SqlPagoEfectivoProvider.class, method ="insertPagoEfectivo")
-	@Options(useGeneratedKeys=true, keyProperty="efId") 
-	void insertPagoEfectivo(PagoEfectivo pagoEfectivo);
+	//@Options(useGeneratedKeys=true, keyProperty="efId") 
+	void insertPagoEfectivo(Object pago);
 	
 	@SelectProvider(type =SqlPagoEfectivoProvider.class, method ="showPagoEfectivoByCaja")
 	@ResultMap("uy.com.cvaucher.services.mybatis.mappers.PagoEfectivoMapper.PagoEfectivoResult")

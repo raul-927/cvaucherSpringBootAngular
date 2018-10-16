@@ -22,24 +22,24 @@
 	
 	<sf:form cssClass ="form"
 		method ="POST" 
-		modelAttribute ="pagoEfectivo" >
+		modelAttribute ="pagoCredito" >
 		 <fieldset style="width: 350px;">
 		 
 		 <input type="hidden" name="_flowExecutionKey" 
              value="${flowExecutionKey}"/>
              
-         <input type="hidden" name="pagoEfDesc" value ="${tipoFormPag.formasDePagoDesc}"/>
+         <input type="hidden" name="pagoCredDesc" value ="${tipoFormPag.formasDePagoDesc}"/>
 		 	
 		 	<div class="form-group">
-			 <sf:label path="pagoEfCedula" for ="pagoEfCedula">C.I:<br/>${paciente.cedula}</sf:label>
-			 <input type="hidden" name="pagoEfCedula" value ="${paciente.cedula}"/>
-			 	<sf:errors path ="pagoEfCedula" cssClass ="error"/>
+			 <sf:label path="pagoCredCedula" for ="pagoCredCedula">C.I:<br/>${paciente.cedula}</sf:label>
+			 <input type="hidden" name="pagoCredCedula" value ="${paciente.cedula}"/>
+			 	<sf:errors path ="pagoCredCedula" cssClass ="error"/>
 		 	</div>
 		 	
 		 	<div class="form-group">
-			 	<sf:label path="pagoEfImporte" for ="pagoEfImporte">Importe</sf:label>
-			 	<sf:input id ="pagoEfImporte" cssClass ="form-control" path="pagoEfImporte" size ="30"/>
-			 	<sf:errors path ="pagoEfImporte" cssClass ="error"/>
+			 	<sf:label path="pagoCredImporte" for ="pagoCredImporte">Importe</sf:label>
+			 	<sf:input id ="pagoCredImporte" cssClass ="form-control" path="pagoCredImporte" size ="30"/>
+			 	<sf:errors path ="pagoCredImporte" cssClass ="error"/>
 		 	</div>
 		 	
 		 	

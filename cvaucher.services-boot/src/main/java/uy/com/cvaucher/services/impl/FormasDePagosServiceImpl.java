@@ -20,6 +20,7 @@ import uy.com.cvaucher.services.domain.FormasDePagos;
 import uy.com.cvaucher.services.domain.HistorialPagos;
 import uy.com.cvaucher.services.domain.MaxTratPacId;
 import uy.com.cvaucher.services.domain.PagoEfectivo;
+import uy.com.cvaucher.services.domain.PagoCredito;
 import uy.com.cvaucher.services.domain.PagoTarjeta;
 import uy.com.cvaucher.services.domain.Tratamiento;
 import uy.com.cvaucher.services.domain.TratamientoPaciente;
@@ -108,7 +109,7 @@ public class FormasDePagosServiceImpl implements FormasDePagosService
 	
 	@Override
 	@Transactional
-	public void insertTratamientoPagoEfectivo(TratamientoPaciente tratamientoPaciente, PagoEfectivo pagoEfectivo, int idCuenta)
+	public void insertTratamientoPagoEfectivo(TratamientoPaciente tratamientoPaciente, PagoEfectivo pago, int idCuenta)
 	{
 		/*System.out.println("Inicio de CvaucherJni");
 		CvaucherJni cvaucher = new CvaucherJni();
@@ -135,9 +136,9 @@ public class FormasDePagosServiceImpl implements FormasDePagosService
 		historialPagos.setHistPagosFechaPago(tratamientoPaciente.getFecha());
 		historialPagos.setHistPagosMonto(tratamientoPaciente.getCostoTratSesion());
 		
-		pagoEfectivo.setPagoEfId(maxTratPacId.getMaxId());
-		this.pagoEfectivoMapper.insertPagoEfectivo(pagoEfectivo);
-		historialPagos.setHistPagosTipo(pagoEfectivo.getPagoEfDesc());
+		pago.setPagoEfId(maxTratPacId.getMaxId());
+		this.pagoEfectivoMapper.insertPagoEfectivo(pago);
+		historialPagos.setHistPagosTipo(pago.getPagoEfDesc());
 		this.historialPagosMapper.insertHistorialPago(historialPagos);
 		
 		tratamientoPaciente.setTratPacId(maxTratPacId.getMaxId());
@@ -146,10 +147,10 @@ public class FormasDePagosServiceImpl implements FormasDePagosService
 	}
 	@Override
 	@Transactional
-	public void insertTratamientoPagoCredito(TratamientoPaciente tratamientoPaciente, PagoEfectivo pagoEfectivo, int idCuenta)
+	public void insertTratamientoPagoCredito(TratamientoPaciente tratamientoPaciente, PagoCredito pago, int idCuenta)
 	{
 
-		tratamientoPaciente.setImportePagado(pagoEfectivo.getPagoEfImporte());
+		tratamientoPaciente.setImportePagado(pago.getPagoCredImporte());
 		
 		this.tratamientoPacienteMapper.insertTratamientoPacienteMapper(tratamientoPaciente);
 		MaxTratPacId maxTratPacId = new MaxTratPacId();
@@ -167,9 +168,9 @@ public class FormasDePagosServiceImpl implements FormasDePagosService
 		historialPagos.setHistPagosFechaPago(tratamientoPaciente.getFecha());
 		historialPagos.setHistPagosMonto(tratamientoPaciente.getImportePagado());
 		
-		pagoEfectivo.setPagoEfId(maxTratPacId.getMaxId());
-		this.pagoEfectivoMapper.insertPagoEfectivo(pagoEfectivo);
-		historialPagos.setHistPagosTipo(pagoEfectivo.getPagoEfDesc());
+		pago.setPagoCredId(maxTratPacId.getMaxId());
+		this.pagoEfectivoMapper.insertPagoEfectivo(pago);
+		historialPagos.setHistPagosTipo(pago.getPagoCredDesc());
 		this.historialPagosMapper.insertHistorialPago(historialPagos);
 		
 		tratamientoPaciente.setTratPacId(maxTratPacId.getMaxId());

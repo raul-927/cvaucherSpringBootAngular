@@ -17,14 +17,15 @@ import uy.com.cvaucher.services.services.CuentasService;
 
 @Controller
 @RequestMapping("/formasDePagos")
-public class FormasDePagosController 
-{
+public class FormasDePagosController {
+	
 	private ArrayList<Integer>grupoCuentaId = new ArrayList<Integer>();
 	private final FormasDePagosService formasDePagosServices;
 	private final CuentasService		cuentasService;
+	
+	
 	@Autowired
-	public FormasDePagosController(FormasDePagosService formasDePagosServices, CuentasService cuentasService)
-	{
+	public FormasDePagosController(FormasDePagosService formasDePagosServices, CuentasService cuentasService){
 		this.formasDePagosServices = formasDePagosServices;
 		this.cuentasService = cuentasService;
 		grupoCuentaId.add(7);
@@ -33,10 +34,7 @@ public class FormasDePagosController
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, params = "insert")
-	public String showFormasDePagos(Model model, FormasDePagos formasDePagos)
-	{
-		
-		
+	public String showFormasDePagos(Model model, FormasDePagos formasDePagos){
 		model.addAttribute(new FormasDePagos());
 		model.addAttribute("forPag", this.formasDePagosServices.findAllFormasDePagos(null));
 		model.addAttribute("tiposPagos",TiposFormasDePagos.values());
@@ -45,8 +43,7 @@ public class FormasDePagosController
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, params = "insert")
-	public String insertFormasDePagos(Model model, @Valid FormasDePagos formasDePagos, BindingResult bindingResult)
-	{
+	public String insertFormasDePagos(Model model, @Valid FormasDePagos formasDePagos, BindingResult bindingResult){
 		if(bindingResult.hasErrors())
 		{
 			System.out.println("Error en insertar Tipos de Pagos"+bindingResult.getAllErrors());

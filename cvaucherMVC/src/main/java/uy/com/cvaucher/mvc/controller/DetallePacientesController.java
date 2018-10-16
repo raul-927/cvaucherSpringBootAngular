@@ -35,9 +35,8 @@ import uy.com.cvaucher.services.domain.SeguimientoPacientes;
 
 @Controller
 @RequestMapping("/detallep")
-public class DetallePacientesController 
-{
-	
+public class DetallePacientesController {
+
 	private final PacientesService 			pacientesServices;
 	private final DireccionService 				direccionServices;
 	private final HistoriaClinicaService 		historiaClinicaServices;
@@ -47,6 +46,7 @@ public class DetallePacientesController
 	private final SeguimientoPacientesService	seguimientoPacientesServices;
 	private final PagoEfectivoService			pagoEfectivoServices;
 	private final CajaService					cajaServices;
+	
 	@Autowired
 	public DetallePacientesController(PacientesService				pacientesServices, 
 									  DireccionService 				direccionServices, 
@@ -74,9 +74,7 @@ public class DetallePacientesController
 	@RequestMapping(value ="/detPac/{pacCedula}", method = RequestMethod.GET)
 	public String showDetallePacientes(Model model,  @PathVariable("pacCedula") int pacCedula)
 	{
-	
-		Pacientes pacientes = 			this.pacientesServices.findPacientesByCedula(pacCedula);
-		
+		Pacientes pacientes = 			this.pacientesServices.findPacientesByCedula(pacCedula);	
 		model.addAttribute("pacien",	this.pacientesServices.findPacientesByCedula(pacientes.getCedula()));
 		model.addAttribute("direc", 	this.direccionServices.findDireccionByCedula(pacientes.getCedula()));
 		model.addAttribute("ag", 		this.agendaService.findAgendaById(pacientes.getCedula()));
@@ -87,9 +85,9 @@ public class DetallePacientesController
 	}
 	
 	@RequestMapping(value ="/detPac/{pacCedula}/{histTratPacId}", method = RequestMethod.GET)
-	public String showPacienteTratamientoPago(Model model, @PathVariable("pacCedula")	int pacCedula, 
-															  @PathVariable("histTratPacId")int histTratPacId)
-	{
+	public String showPacienteTratamientoPago(Model model, 
+												@PathVariable("pacCedula")		int pacCedula, 
+												@PathVariable("histTratPacId")	int histTratPacId){
 		Date hoy = new Date();
 		String patron = "YYYY-MM-dd";
 		SimpleDateFormat formato = new SimpleDateFormat(patron);
@@ -105,14 +103,12 @@ public class DetallePacientesController
 	
 	@RequestMapping(value ="/detPac/{pacCedula}/{histTratPacId}",params = "pagos", method = RequestMethod.POST)
 	public String insertPacienteTratamientoPago(Model model, @PathVariable("pacCedula")	int pacCedula, 
-			  @PathVariable("histTratPacId")int histTratPacId, @Valid HistorialPagos historialPagos, BindingResult bindingResult)
-	{
+			  @PathVariable("histTratPacId")int histTratPacId, @Valid HistorialPagos historialPagos, BindingResult bindingResult){
 		Date hoy = new Date();
 		String patron = "YYYY-MM-dd";
 		SimpleDateFormat formato = new SimpleDateFormat(patron);
 		String salida = formato.format(hoy);
-		if(bindingResult.hasErrors())
-		{
+		if(bindingResult.hasErrors()){
 			System.out.println("Error en insertPacienteTratamientoPago");
 			model.addAttribute(new HistorialPagos());
 			model.addAttribute(new SeguimientoPacientes());
@@ -125,20 +121,19 @@ public class DetallePacientesController
 		Caja caja = this.cajaServices.cargoCajaActual();
 		historialPagos.setHistPagosCajaId(caja.getCajaId());
 		historialPagos.setHistTratPacId(histTratPacId);
-		if(historialPagos.getHistPagosMonto()!= 0)
-		{
+		if(historialPagos.getHistPagosMonto()!= 0){
 			String tipoPago = "CRED";
 			historialPagos.setHistPagosTipo(tipoPago);
 			PagoEfectivo pagoEfectivo = new PagoEfectivo();
 			pagoEfectivo.setPagoEfCedula(pacCedula);
 			pagoEfectivo.setPagoEfDesc(tipoPago);
 			pagoEfectivo.setPagoEfId(histTratPacId);
+			pagoEfectivo.setPagoEfCuenta("VENTA");
 			pagoEfectivo.setPagoEfImporte(historialPagos.getHistPagosMonto());
 			this.historialPagosServices.insertHistorialPago(historialPagos);
 			this.pagoEfectivoServices.insertPagoEfectivo(pagoEfectivo);
 			
 		}
-		
 		int tratPacId = histTratPacId;
 		TratamientoPaciente tratamientoPaciente  = new TratamientoPaciente();
 		SeguimientoPacientes seguimientoPacientes = new SeguimientoPacientes();
@@ -156,9 +151,11 @@ public class DetallePacientesController
 	}
 	
 	@RequestMapping(value ="/detPac/{pacCedula}/{histTratPacId}",params = "seg", method = RequestMethod.POST)
-	public String insertPacienteTratamientoSeguimiento(Model model, @PathVariable("pacCedula")	int pacCedula, 
-			  @PathVariable("histTratPacId")int histTratPacId, @Valid SeguimientoPacientes seguimientoPacientes, BindingResult bindingResult)
-	{
+	public String insertPacienteTratamientoSeguimiento(Model model, 
+														@PathVariable("pacCedula")	int pacCedula, 
+														@PathVariable("histTratPacId")int histTratPacId, 
+														@Valid SeguimientoPacientes seguimientoPacientes, 
+														BindingResult bindingResult){
 		Date hoy = new Date();
 		String patron = "YYYY-MM-dd";
 		SimpleDateFormat formato = new SimpleDateFormat(patron);
