@@ -156,7 +156,6 @@ public class AsientoContableServiceImpl implements AsientoContableService {
 		
 		if(formaDePago instanceof PagoTarjeta){
 			String pagoTarjCuenta = desCuentaFormaDePago.getCuentaDesc();
-
 			((PagoTarjeta) formaDePago).setTarjetaCajaId(cajaActual.getCajaId());
 			((PagoTarjeta) formaDePago).setTarjCuenta(pagoTarjCuenta);
 			((PagoTarjeta) formaDePago).setAsientoNro(maxNumAsientoContable.getMaxNum());
