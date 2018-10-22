@@ -20,6 +20,7 @@
 		<c:set var ="aux2" value ="0"/>	
 	</c:if>
 	
+	<input type="hidden" name="cantSesiones" value="${aux2}"/>
 	<sf:label cssClass ="form-control" path="cantSesiones" value ="${aux2}" size ="30">${aux2}</sf:label>
 	<sf:errors path ="cantSesiones" cssClass ="error"/>
 </div>

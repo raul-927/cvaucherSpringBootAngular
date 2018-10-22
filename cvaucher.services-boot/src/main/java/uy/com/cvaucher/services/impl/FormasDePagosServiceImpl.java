@@ -149,38 +149,40 @@ public class FormasDePagosServiceImpl implements FormasDePagosService
 	@Transactional
 	public void insertTratamientoPagoCredito(TratamientoPaciente tratamientoPaciente, PagoCredito pago, int idCuenta)
 	{
-
-		tratamientoPaciente.setImportePagado(pago.getPagoCredImporte());
+		if(tratamientoPaciente !=null) {
+			tratamientoPaciente.setImportePagado(pago.getPagoCredImporte());
+			
+			this.tratamientoPacienteMapper.insertTratamientoPacienteMapper(tratamientoPaciente);
+			MaxTratPacId maxTratPacId = new MaxTratPacId();
+			SearchMaxTratPacId search = new SearchMaxTratPacId();
+			search.setCedula(tratamientoPaciente.getPacientes().getCedula());
+			search.setFecha(tratamientoPaciente.getFecha());
+			search.setTratId(tratamientoPaciente.getTratamId());
+			HistorialPagos historialPagos = new HistorialPagos();
+			
+			int maxId = this.tratamientoPacienteMapper.findMaxTratPacId(search).getMaxId();
+			maxTratPacId.setMaxId(maxId);
+			Caja caja = this.cajaMapper.cargoCajaActual();
+			historialPagos.setHistPagosCajaId(caja.getCajaId());
+			historialPagos.setHistTratPacId(maxTratPacId.getMaxId());
+			historialPagos.setHistPagosFechaPago(tratamientoPaciente.getFecha());
+			historialPagos.setHistPagosMonto(tratamientoPaciente.getImportePagado());
+			
+			pago.setPagoCredId(maxTratPacId.getMaxId());
+			this.pagoEfectivoMapper.insertPagoEfectivo(pago);
+			historialPagos.setHistPagosTipo(pago.getPagoCredDesc());
+			this.historialPagosMapper.insertHistorialPago(historialPagos);
+			
+			tratamientoPaciente.setTratPacId(maxTratPacId.getMaxId());
+			int costoTratSesion = tratamientoPaciente.getCostoTratSesion();
+			int importePagado = tratamientoPaciente.getImportePagado();
+			int saldoPendiente = costoTratSesion - importePagado;
+			tratamientoPaciente.setSaldoPendiente(saldoPendiente);
+			tratamientoPaciente.setImportePagado(0);
+			
+			this.tratamientoPacienteMapper.updateTratamientoPacienteImporteCredito(tratamientoPaciente);
+		}
 		
-		this.tratamientoPacienteMapper.insertTratamientoPacienteMapper(tratamientoPaciente);
-		MaxTratPacId maxTratPacId = new MaxTratPacId();
-		SearchMaxTratPacId search = new SearchMaxTratPacId();
-		search.setCedula(tratamientoPaciente.getPacientes().getCedula());
-		search.setFecha(tratamientoPaciente.getFecha());
-		search.setTratId(tratamientoPaciente.getTratamId());
-		HistorialPagos historialPagos = new HistorialPagos();
-		
-		int maxId = this.tratamientoPacienteMapper.findMaxTratPacId(search).getMaxId();
-		maxTratPacId.setMaxId(maxId);
-		Caja caja = this.cajaMapper.cargoCajaActual();
-		historialPagos.setHistPagosCajaId(caja.getCajaId());
-		historialPagos.setHistTratPacId(maxTratPacId.getMaxId());
-		historialPagos.setHistPagosFechaPago(tratamientoPaciente.getFecha());
-		historialPagos.setHistPagosMonto(tratamientoPaciente.getImportePagado());
-		
-		pago.setPagoCredId(maxTratPacId.getMaxId());
-		this.pagoEfectivoMapper.insertPagoEfectivo(pago);
-		historialPagos.setHistPagosTipo(pago.getPagoCredDesc());
-		this.historialPagosMapper.insertHistorialPago(historialPagos);
-		
-		tratamientoPaciente.setTratPacId(maxTratPacId.getMaxId());
-		int costoTratSesion = tratamientoPaciente.getCostoTratSesion();
-		int importePagado = tratamientoPaciente.getImportePagado();
-		int saldoPendiente = costoTratSesion - importePagado;
-		tratamientoPaciente.setSaldoPendiente(saldoPendiente);
-		tratamientoPaciente.setImportePagado(0);
-		
-		this.tratamientoPacienteMapper.updateTratamientoPacienteImporteCredito(tratamientoPaciente);
 	}
 
 

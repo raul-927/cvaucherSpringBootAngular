@@ -21,12 +21,14 @@ import uy.com.cvaucher.services.services.SeguimientoPacientesService;
 import uy.com.cvaucher.services.services.SesionesService;
 import uy.com.cvaucher.services.services.TratamientoService;
 import uy.com.cvaucher.services.services.AgendaService;
+import uy.com.cvaucher.services.services.AsientoContableService;
 import uy.com.cvaucher.services.services.CajaService;
 import uy.com.cvaucher.services.services.TratamientoPacienteService;
 import uy.com.cvaucher.services.services.HistorialPagosService;
 import uy.com.cvaucher.services.domain.Caja;
 import uy.com.cvaucher.services.domain.HistorialPagos;
 import uy.com.cvaucher.services.domain.Pacientes;
+import uy.com.cvaucher.services.domain.PagoCredito;
 import uy.com.cvaucher.services.domain.PagoEfectivo;
 import uy.com.cvaucher.services.domain.TratamientoPaciente;
 import uy.com.cvaucher.services.domain.SeguimientoPacientes;
@@ -45,6 +47,7 @@ public class DetallePacientesController {
 	private final HistorialPagosService			historialPagosServices;
 	private final SeguimientoPacientesService	seguimientoPacientesServices;
 	private final PagoEfectivoService			pagoEfectivoServices;
+	private final AsientoContableService		asientoContableService;
 	private final CajaService					cajaServices;
 	
 	@Autowired
@@ -58,6 +61,7 @@ public class DetallePacientesController {
 									  HistorialPagosService			historialPagosServices,
 									  SeguimientoPacientesService	seguimientoPacientesServices,
 									  PagoEfectivoService			pagoEfectivoServices,
+									  AsientoContableService		asientoContableService,
 									  CajaService					cajaServices){
 		
 		this.pacientesServices 				= pacientesServices;
@@ -68,6 +72,7 @@ public class DetallePacientesController {
 		this.historialPagosServices			= historialPagosServices;
 		this.seguimientoPacientesServices	= seguimientoPacientesServices;
 		this.pagoEfectivoServices			= pagoEfectivoServices;
+		this.asientoContableService			= asientoContableService;
 		this.cajaServices					= cajaServices;
 	}
 	
@@ -124,6 +129,13 @@ public class DetallePacientesController {
 		if(historialPagos.getHistPagosMonto()!= 0){
 			String tipoPago = "CRED";
 			historialPagos.setHistPagosTipo(tipoPago);
+			PagoCredito pagoCredito = new PagoCredito();
+			pagoCredito.setPagoCredCedula(pacCedula);
+			pagoCredito.setPagoCredDesc(tipoPago);
+			pagoCredito.setPagoCredId(histTratPacId);
+			pagoCredito.setPagoCredCuenta("VENTA");
+			pagoCredito.setPagoCredImporte(historialPagos.getHistPagosMonto());
+			
 			PagoEfectivo pagoEfectivo = new PagoEfectivo();
 			pagoEfectivo.setPagoEfCedula(pacCedula);
 			pagoEfectivo.setPagoEfDesc(tipoPago);
@@ -131,7 +143,8 @@ public class DetallePacientesController {
 			pagoEfectivo.setPagoEfCuenta("VENTA");
 			pagoEfectivo.setPagoEfImporte(historialPagos.getHistPagosMonto());
 			this.historialPagosServices.insertHistorialPago(historialPagos);
-			this.pagoEfectivoServices.insertPagoEfectivo(pagoEfectivo);
+			this.asientoContableService.ingresarAsientoContable(pagoCredito, null, null);
+			//this.pagoEfectivoServices.insertPagoEfectivo(pagoEfectivo);
 			
 		}
 		int tratPacId = histTratPacId;
