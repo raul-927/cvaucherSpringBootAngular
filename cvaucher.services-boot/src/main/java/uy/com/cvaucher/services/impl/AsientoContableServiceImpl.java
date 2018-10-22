@@ -106,9 +106,10 @@ public class AsientoContableServiceImpl implements AsientoContableService {
 		ArrayList<AsientoContable> asientoContableList = new ArrayList<AsientoContable>();
 		//Caja caja = this.cajaMapper.cargoCajaActual();
 		Cuentas asCuentaL1 = this.cuentasMapper.selectCuentaByCuentaId(formasDePagoDesc.getFormasDePagoCuenta());
-		BigDecimal asCuentaDebeMontoL1 = new BigDecimal((double)tratamientoPaciente.getCostoTratSesion());
+		BigDecimal asCuentaDebeMontoL1 = null;
 		BigDecimal asCuentaHaberMontoL1 = new BigDecimal((double)00);
-	
+		BigDecimal asImpDebeMonto = new BigDecimal("00");
+		BigDecimal resultado = null;
 		Tratamiento tratamiento = this.tratamientoMapper.findTratamientoById(tratamientoPaciente.getTratamId());
 		Cuentas cuentaImp = this.cuentasMapper.selectCuentaByCuentaId(tratamiento.getImpuesto().getImpuestoCuenta().getCuentaId());
 				
@@ -131,16 +132,17 @@ public class AsientoContableServiceImpl implements AsientoContableService {
 		asientoContableL2.setCaja(cajaActual);
 		asientoContableL3.setCaja(cajaActual);
 		
-		BigDecimal asImpDebeMonto = new BigDecimal("00");
-		BigDecimal impuesto = tratamiento.getImpuesto().getImpuestoValor();
-		BigDecimal aux = asCuentaDebeMontoL1.multiply(impuesto);
-		BigDecimal divisor = new BigDecimal("100.00");
-		BigDecimal resultado = aux.divide(divisor);
-		BigDecimal asImpHaberMonto = new BigDecimal("00");
-		this.total = asCuentaDebeMontoL1.subtract(resultado);
-		asImpHaberMonto.add(resultado);
+		
 		
 		if(formaDePago instanceof PagoEfectivo){
+			asCuentaDebeMontoL1 = new BigDecimal((double)tratamientoPaciente.getCostoTratSesion());
+			BigDecimal impuesto = tratamiento.getImpuesto().getImpuestoValor();
+			BigDecimal aux = asCuentaDebeMontoL1.multiply(impuesto);
+			BigDecimal divisor = new BigDecimal("100.00");
+			resultado = aux.divide(divisor);
+			BigDecimal asImpHaberMonto = new BigDecimal("00");
+			this.total = asCuentaDebeMontoL1.subtract(resultado);
+			asImpHaberMonto.add(resultado);
 			((PagoEfectivo) formaDePago).setPagoEfCajaId(cajaActual.getCajaId());
 			((PagoEfectivo) formaDePago).setPagoEfCuenta(pagoEfCuenta);
 			((PagoEfectivo) formaDePago).setAsientoNro(maxNumAsientoContable.getMaxNum());
@@ -148,6 +150,14 @@ public class AsientoContableServiceImpl implements AsientoContableService {
 		}
 		
 		if(formaDePago instanceof PagoCredito) {
+			asCuentaDebeMontoL1 = new BigDecimal((double)((PagoCredito) formaDePago).getPagoCredImporte());
+			BigDecimal impuesto = tratamiento.getImpuesto().getImpuestoValor();
+			BigDecimal aux = asCuentaDebeMontoL1.multiply(impuesto);
+			BigDecimal divisor = new BigDecimal("100.00");
+			resultado = aux.divide(divisor);
+			BigDecimal asImpHaberMonto = new BigDecimal("00");
+			this.total = asCuentaDebeMontoL1.subtract(resultado);
+			asImpHaberMonto.add(resultado);
 			((PagoCredito)formaDePago).setPagoCredCajaId(cajaActual.getCajaId());
 			((PagoCredito)formaDePago).setPagoCredCuenta(pagoEfCuenta);
 			((PagoCredito)formaDePago).setAsientoNro(maxNumAsientoContable.getMaxNum());

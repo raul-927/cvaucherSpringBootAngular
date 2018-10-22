@@ -289,7 +289,7 @@ public class FlowPacientesController
 		pagoCredito.setPagoCredCuenta(pagoEfCuenta);
 		pagoCredito.setAsientoNro(pagoEfAsientoNro.getMaxNum());
 		this.insertAsientoContable(pagoCredito, tratamientoPaciente, formasDePagoDesc);
-		this.formasDePagosService.insertTratamientoPagoCredito(tratamientoPaciente, pagoCredito, formasDePagoDesc.getFormasDePagoCuenta());
+		//this.formasDePagosService.insertTratamientoPagoCredito(tratamientoPaciente, pagoCredito, formasDePagoDesc.getFormasDePagoCuenta());
 	}
 	
 	public FormasDePagosDesc getFormasDePagosDesc(){
