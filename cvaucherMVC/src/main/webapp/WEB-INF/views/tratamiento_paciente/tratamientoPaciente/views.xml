@@ -5,7 +5,7 @@
 <tiles-definitions>
 <!--<start id="tile_template"/>-->
 
-   <definition name="tratamientoPaciente_tratamientoPaciente/insertTratamientoPaciente" extends ="layout2">
+   <definition name="tratamientoPaciente/insertTratamientoPaciente" extends ="layout2">
              
 	<put-attribute name="left"
    		value = "content"/>
