@@ -165,6 +165,14 @@ public class AsientoContableServiceImpl implements AsientoContableService {
 		}
 		
 		if(formaDePago instanceof PagoTarjeta){
+			asCuentaDebeMontoL1 = new BigDecimal((double)tratamientoPaciente.getCostoTratSesion());
+			BigDecimal impuesto = tratamiento.getImpuesto().getImpuestoValor();
+			BigDecimal aux = asCuentaDebeMontoL1.multiply(impuesto);
+			BigDecimal divisor = new BigDecimal("100.00");
+			resultado = aux.divide(divisor);
+			BigDecimal asImpHaberMonto = new BigDecimal("00");
+			this.total = asCuentaDebeMontoL1.subtract(resultado);
+			asImpHaberMonto.add(resultado);
 			String pagoTarjCuenta = desCuentaFormaDePago.getCuentaDesc();
 			((PagoTarjeta) formaDePago).setTarjetaCajaId(cajaActual.getCajaId());
 			((PagoTarjeta) formaDePago).setTarjCuenta(pagoTarjCuenta);
